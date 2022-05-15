@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+#iconPng{
+  width:80px;
+}
+
+.werPart{
+  border: 3px solid red;
+  margin:20px;
+}
