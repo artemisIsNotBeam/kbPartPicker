@@ -1,15 +1,26 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import './App.css';
 
 
 // this is what im sending to
 
-function Things(props){
-    return <div class="section">
-        <p id="leftIt">link: <a>{props.link}</a></p>
-        <p id="cent">Item: {props.name}</p>
-        <p id="rightIt">Price: {props.price}</p>
-    </div>
+class  Things extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
+    deleteElement(){
+        
+    }
+
+    render(){ 
+        return <div class="section" className="App">
+            <a id="leftIt" href={this.props.link}>{this.props.name}</a>
+            <p id="rightIt">Price: {this.props.price}</p>
+            <button>Deleted</button>
+        </div>
+    }
 }
 
 class CustomPart extends React.Component{
@@ -33,6 +44,9 @@ class CustomPart extends React.Component{
         let item = prompt("whats name of the item");
         let price = prompt("whats the price")
         console.log("I ran");
+
+        let ele = <Things link={link} item={item} price={price}></Things>
+        this.case = [ele];
     }
 
     
@@ -40,11 +54,11 @@ class CustomPart extends React.Component{
         // TODO: follow this thing down below
         // im gonna try to  follow the https://www.w3schools.com/react/react_lists.asp 
         return(
-            <div id="custompart">
+            <div className="App">
                 <div id="case" class="werPart">
                     <h4>case</h4>
-                    <Things link="https://novelkeys.com/collections/top-dogs/products/nk65-tfue-edition" name="tfue keycaps" price="35"></Things>
-                    <button onClick={() => this.addThing}>Add Part</button>
+                    {this.case}
+                    <button onClick={this.addThing}>Add Part</button>
                 </div>
 
                 <div id="switches" class="werPart">
