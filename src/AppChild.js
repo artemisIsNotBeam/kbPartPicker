@@ -8,27 +8,18 @@ import './App.css';
 class  Things extends React.Component{
     constructor(props){
         super(props)
-
-        console.log(props.list)
         
         this.state={
             list:props.list
         }
-
-        console.log("number 2 is coming right up");
-        console.log(this.state.list)
-    }
-
-    daCode(forList){
-        return <div class="section" className="App">
-            <a id="leftIt" href={forList["link"]}>{forList["name"]}</a>
-            <p id="rightIt">Price: {forList["price"]}</p>
-        </div>
     }
 
     render(){ 
-        let RenderThing = this.daCode(this.state.list);
-        return(<RenderThing/>)
+        
+        return (<div class="section" className="App">
+            <a id="leftIt" href={this.state.list["link"]}>{this.state.list["name"]}</a>
+            <p id="rightIt">Price: {this.state.list["price"]}</p>
+        </div>)
     }
 }
 
@@ -52,20 +43,23 @@ class CustomPart extends React.Component{
             accesories:[],
         };
 
-        this.addThing = this.addThing.bind();
+        this.addThing = this.addThing.bind(this);
     }
       
 
     addThing(whichList){
+
         let link = prompt("whats the link");
         let item = prompt("whats name of the item");
-        let price = prompt("whats the price")
+        let price = prompt("whats the price, only put in numbers otherwise will causes error")
         
+        price = parseInt(price, 10);
+
         let tempList = {"link":link,"item":item,"price":price}; 
         //TODO have this line working console.log(this.state[whichList]);
 
-        this.setState={case:tempList}
-        console.log("ran function, new state");
+        this.setState({case: tempList});
+
         console.log(this.state.case)
     }
 
@@ -73,7 +67,8 @@ class CustomPart extends React.Component{
     render(){
         // TODO: follow this thing down below
         // im gonna try to  follow the https://www.w3schools.com/react/react_lists.asp 
-        // {this.case.map((kbPart) => <Things link={kbPart.link} name={kbPart.name} price={kbPart.price}/>)}
+
+        // want this line, bu tcauses errors {this.state.case.map((part) => <Things list={part}/>)}
 
         return(
             <div className="App">
