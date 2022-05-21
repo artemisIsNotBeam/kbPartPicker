@@ -20,15 +20,15 @@ class  Things extends React.Component{
     }
 
     daCode(forList){
-        return (<div class="section" className="App">
+        return <div class="section" className="App">
             <a id="leftIt" href={forList["link"]}>{forList["name"]}</a>
             <p id="rightIt">Price: {forList["price"]}</p>
-        </div>)
+        </div>
     }
 
     render(){ 
-        let renderThing = this.daCode(this.state.list);
-        return(<renderThing/>)
+        let RenderThing = this.daCode(this.state.list);
+        return(<RenderThing/>)
     }
 }
 
@@ -43,7 +43,8 @@ class CustomPart extends React.Component{
                 "price":"$200"
             },{
                 "link":"https://novelkeys.com/collections/top-dogs/products/nk65-tfue-edition",
-                "name":"tfue keycaps"
+                "name":"tfue keycaps",
+                "price":"$80"
             }],
             switches:[],
             keycaps:[],
