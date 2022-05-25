@@ -59,10 +59,10 @@ class CustomPart extends React.Component{
         let item = prompt("whats name of the item");
         let price = prompt("whats the price, only put in numbers otherwise will causes error")
         
-        let whyNoWork=[link,item,price]
-        price = parseInt(price);
+        price = parseInt(price,10);
+        let whyNoWork=[link,item,price];
         //TODO have this line working console.log(this.state[whichList]);
-        this.setState({whichList:whyNoWork})
+        this.setState({ [whichList] :whyNoWork});
         console.log(whyNoWork)
         // https://stackoverflow.com/questions/29886552/why-are-objects-not-iterable-in-javascript look at this to add object into state
 
@@ -95,7 +95,7 @@ class CustomPart extends React.Component{
         // want this line, bu tcauses errors {this.state.case.map((part) => <Things list={part}/>)}
 
         return(
-            <div className="App">
+            <div className="app Section">
                 <div id="case" class="werPart">
                     <h4>case</h4>
                     {this.state.case.map((part) => <Things list={part}/>)}
