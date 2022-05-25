@@ -62,8 +62,8 @@ class CustomPart extends React.Component{
         let whyNoWork=[link,item,price]
         price = parseInt(price);
         //TODO have this line working console.log(this.state[whichList]);
-        this.setState({"case":whyNoWork})
-        
+        this.setState({whichList:whyNoWork})
+        console.log(whyNoWork)
         // https://stackoverflow.com/questions/29886552/why-are-objects-not-iterable-in-javascript look at this to add object into state
 
         //  okay I think to by pass I can just run it as a list:[(da link here),(name be here),(price)]
