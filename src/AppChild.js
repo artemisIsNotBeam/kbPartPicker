@@ -8,17 +8,22 @@ import './App.css';
 class  Things extends React.Component{
     constructor(props){
         super(props)
-        
+        console.log(props);
         this.state={
             list:props.list
         }
     }
 
+    CheckCode(){
+        console.log(this.state.list)
+    }
+
     render(){ 
         
         return (<div class="section" className="App">
-            <a id="leftIt" href={this.state.list["link"]}>{this.state.list["name"]}</a>
-            <p id="rightIt">Price: {this.state.list["price"]}</p>
+            <a id="leftIt" href={this.state.list[0]}>{this.state.list[1]}</a>
+            <p id="rightIt">Price: {this.state.list[2]}</p>
+            <button onClick={()=> this.CheckCode()}>Check Codoe</button>
         </div>)
     }
 }
@@ -28,15 +33,15 @@ class CustomPart extends React.Component{
         super(props);
         // Don't call this.setState() here!
         this.state = {
-            "case": [{
-                "link":"https://kbdfans.com/collections/tofu65/products/fully-assembled-tofu65-black-hot-swap-mechanical-keyboard-with-cement-grey-pbt-dye-sub-keycaps",
-                "name":"tofu 65 assembled",
-                "price":200
-            },{
-                "link":"https://novelkeys.com/collections/top-dogs/products/nk65-tfue-edition",
-                "name":"tfue keycaps",
-                "price":80
-            }],
+            "case": [[
+                "https://kbdfans.com/collections/tofu65/products/fully-assembled-tofu65-black-hot-swap-mechanical-keyboard-with-cement-grey-pbt-dye-sub-keycaps",
+                "tofu 65 assembled",
+                200
+            ],[
+                "https://novelkeys.com/collections/top-dogs/products/nk65-tfue-edition",
+                "tfue keycaps",
+                80
+            ]],
             "switches":[],
             "keycaps":[],
             "artisans":[],
@@ -54,16 +59,14 @@ class CustomPart extends React.Component{
         let item = prompt("whats name of the item");
         let price = prompt("whats the price, only put in numbers otherwise will causes error")
         
-        price = parseInt(price, 10);
-
-        let tempList = {"link":link,"item":item,"price":price}; 
+        let whyNoWork=[link,item,price]
+        price = parseInt(price);
         //TODO have this line working console.log(this.state[whichList]);
-
-        this.setState({whichList: [...tempList]});
+        this.setState({"case":whyNoWork})
+        
         // https://stackoverflow.com/questions/29886552/why-are-objects-not-iterable-in-javascript look at this to add object into state
 
         //  okay I think to by pass I can just run it as a list:[(da link here),(name be here),(price)]
-        console.log(this.state.whichList)
     }
 
     clear(whichList){
@@ -77,9 +80,9 @@ class CustomPart extends React.Component{
 
         goThrough.map((place) =>{
             let newPlace = DaState[place];
-            newPlace.map((kbPart) =>{
-                price += kbPart["price"]
-            })
+            for (let i=0;i<newPlace.length;i++){
+                price += newPlace[i][2]
+            }
         });
         return ""+price
     }
