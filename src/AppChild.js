@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
 
@@ -8,10 +8,10 @@ import './App.css';
 class  Things extends React.Component{
     constructor(props){
         super(props)
-        console.log(props);
         this.state={
             list:props.list
         }
+        console.log(this.state.list)
     }
 
     CheckCode(){
@@ -60,10 +60,12 @@ class CustomPart extends React.Component{
         let price = prompt("whats the price, only put in numbers otherwise will causes error")
         
         price = parseInt(price,10);
-        let whyNoWork=[link,item,price];
+
+        let daList;
+        console.log(daList = [link,item,price]);
         //TODO have this line working console.log(this.state[whichList]);
-        this.setState({ [whichList] :whyNoWork});
-        console.log(whyNoWork)
+        this.setState({ "case" :daList});
+        console.log(this.state[whichList]);
         // https://stackoverflow.com/questions/29886552/why-are-objects-not-iterable-in-javascript look at this to add object into state
 
         //  okay I think to by pass I can just run it as a list:[(da link here),(name be here),(price)]
@@ -98,7 +100,7 @@ class CustomPart extends React.Component{
             <div className="app Section">
                 <div id="case" class="werPart">
                     <h4>case</h4>
-                    {this.state.case.map((part) => <Things list={part}/>)}
+                    {this.state["case"].map((part) => <Things list={part}/>)}
                     <button onClick={()=> this.clear("case")}>Clear</button>
                     <button onClick={() => this.addThing("case")}>Add Part</button>
                 </div>
