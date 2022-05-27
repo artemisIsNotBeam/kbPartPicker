@@ -70,7 +70,7 @@ class CustomPart extends React.Component{
     }
 
     clear(whichList){
-        this.setState({whichList:null})
+        this.setState({[whichList]:[]})
         console.log(this.state.whichList)
     }
 
