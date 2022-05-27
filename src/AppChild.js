@@ -13,17 +13,11 @@ class  Things extends React.Component{
         }
         console.log(this.state.list)
     }
-
-    CheckCode(){
-        console.log(this.state.list)
-    }
-
     render(){ 
         
         return (<div class="section" className="App">
             <a id="leftIt" href={this.state.list[0]}>{this.state.list[1]}</a>
             <p id="rightIt">Price: {this.state.list[2]}</p>
-            <button onClick={()=> this.CheckCode()}>Check Codoe</button>
         </div>)
     }
 }
@@ -61,10 +55,14 @@ class CustomPart extends React.Component{
         
         price = parseInt(price,10);
 
-        let daList;
-        console.log(daList = [link,item,price]);
+        let thingtoPut=[];
+        this.state[whichList].map((part)=>{
+            thingtoPut.push(part);
+        })
+        thingtoPut.push([link,item,price])
+        console.log(thingtoPut)
         //TODO have this line working console.log(this.state[whichList]);
-        this.setState({ "case" :daList});
+        this.setState({ [whichList] :thingtoPut});
         console.log(this.state[whichList]);
         // https://stackoverflow.com/questions/29886552/why-are-objects-not-iterable-in-javascript look at this to add object into state
 
