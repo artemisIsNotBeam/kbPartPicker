@@ -34,7 +34,7 @@ class CustomPart extends React.Component{
             "artisans":[],
             "accesories":[],
             "goThrough":["case","switches","keycaps","artisans","accesories"],
-            "message":""
+            "message":"when you hit export, this text will change. Save this in a document. When import next paste this list there"
         };
 
         this.addThing = this.addThing.bind(this);
@@ -84,16 +84,20 @@ class CustomPart extends React.Component{
 
     import(goThroughfake){
         let newState = prompt("what was your export prompt")
-        goThroughfake.map((place)=>{
-            let newPlace = this.state[place];
-        })
+        console.log(newState)
+        for(let i=0;i<newState.length;i++){
+            console.log(newState[i]);
+        }
     }
 
     export(stateDoe){
         let ourLog = []
         stateDoe["goThrough"].map((place) =>{
             let newPlace = this.state[place];
-            ourLog.push(""+newPlace);
+            ourLog.push(`[${newPlace.map((thing) => "["+thing+"]")}]`);
+            if (place !== "accesories"){
+                ourLog.push(",");
+            }
         });
         this.setState({ "message": ourLog});
     }
@@ -152,7 +156,6 @@ class CustomPart extends React.Component{
                 <div>
                     <button onClick={()=> this.import(this.state["goThrough"])}>import</button>
                     <button onClick={() => this.export(this.state)}>export</button>
-                    <p>import and export coming soon</p>
                 </div>
             </div>
             
