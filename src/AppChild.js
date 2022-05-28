@@ -13,11 +13,12 @@ class  Things extends React.Component{
         }
         console.log(this.state.list)
     }
+
     render(){ 
-        
         return (<div class="section" className="App">
             <a id="leftIt" href={this.state.list[0]}>{this.state.list[1]}</a>
             <p id="rightIt">Price: {this.state.list[2]}</p>
+            <button onClick={()=>this.props.delete(this.state.list)}>Delete Element</button>
         </div>)
     }
 }
@@ -27,23 +28,19 @@ class CustomPart extends React.Component{
         super(props);
         // Don't call this.setState() here!
         this.state = {
-            "case": [[
-                "https://kbdfans.com/collections/tofu65/products/fully-assembled-tofu65-black-hot-swap-mechanical-keyboard-with-cement-grey-pbt-dye-sub-keycaps",
-                "tofu 65 assembled",
-                200
-            ],[
-                "https://novelkeys.com/collections/top-dogs/products/nk65-tfue-edition",
-                "tfue keycaps",
-                80
-            ]],
+            "case": [],
             "switches":[],
             "keycaps":[],
             "artisans":[],
             "accesories":[],
+            "goThrough":["case","switches","keycaps","artisans","accesories"],
+            "message":""
         };
 
         this.addThing = this.addThing.bind(this);
         this.clear = this.clear.bind(this);
+        this.import = this.import.bind(this);
+        this.delete = this.delete.bind(this);
     }
       
 
@@ -71,14 +68,12 @@ class CustomPart extends React.Component{
 
     clear(whichList){
         this.setState({[whichList]:[]})
-        console.log(this.state.whichList)
     }
 
     totPrice(DaState){
-        let goThrough = ["case","switches","keycaps","artisans","accesories"]
         let price = 0;
 
-        goThrough.map((place) =>{
+        DaState["goThrough"].map((place) =>{
             let newPlace = DaState[place];
             for (let i=0;i<newPlace.length;i++){
                 price += newPlace[i][2]
@@ -87,6 +82,32 @@ class CustomPart extends React.Component{
         return ""+price
     }
 
+    import(goThroughfake){
+        let newState = prompt("what was your export prompt")
+        goThroughfake.map((place)=>{
+            let newPlace = this.state[place];
+        })
+    }
+
+    export(stateDoe){
+        let ourLog = []
+        stateDoe["goThrough"].map((place) =>{
+            let newPlace = this.state[place];
+            ourLog.push(""+newPlace);
+        });
+        this.setState({ "message": ourLog});
+    }
+
+    delete(theirList){
+        this.state["goThrough"].map((place)=>{
+            let newPlace = this.state[place];
+            // running through the list
+            this.setState({
+                [place]: newPlace.filter((_, i) => i === theirList)
+            });
+            console.log(newPlace.filter((_, i) => i === theirList));
+        })
+    }
     
     render(){
         // TODO: follow this thing down below
@@ -98,7 +119,7 @@ class CustomPart extends React.Component{
             <div className="app Section">
                 <div id="case" class="werPart">
                     <h4>case</h4>
-                    {this.state["case"].map((part) => <Things list={part}/>)}
+                    {this.state["case"].map((part) => <Things list={part} delete={this.delete}/>)}
                     <button onClick={()=> this.clear("case")}>Clear</button>
                     <button onClick={() => this.addThing("case")}>Add Part</button>
                 </div>
@@ -126,7 +147,13 @@ class CustomPart extends React.Component{
                     <button>Clear</button>
                     <button>Add Part</button>
                 </div>
-                <p>Price: {this.totPrice(this.state)}</p><button>Button price tester</button>
+                <p>Price: {this.totPrice(this.state)}</p>
+                {this.state.message}
+                <div>
+                    <button onClick={()=> this.import(this.state["goThrough"])}>import</button>
+                    <button onClick={() => this.export(this.state)}>export</button>
+                    <p>import and export coming soon</p>
+                </div>
             </div>
             
         )
