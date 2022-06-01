@@ -83,22 +83,22 @@ class CustomPart extends React.Component{
     }
 
     import(goThroughfake){
-        let newState = prompt("what was your export prompt")
-        console.log(newState)
-        for(let i=0;i<newState.length;i++){
-            console.log(newState[i]);
-        }
+        let orignal = prompt("what was your export prompt")
+        let arr = orignal.split(";/spitCode");
+        console.log(arr);
     }
 
     export(stateDoe){
-        let ourLog = []
+        let ourLog = [];
+
         stateDoe["goThrough"].map((place) =>{
             let newPlace = this.state[place];
             ourLog.push(`[${newPlace.map((thing) => "["+thing+"]")}]`);
             if (place !== "accesories"){
-                ourLog.push(",");
+                ourLog.push(";/spitCode");
             }
         });
+
         this.setState({ "message": ourLog});
     }
 
@@ -121,6 +121,7 @@ class CustomPart extends React.Component{
 
         return(
             <div className="app Section">
+                <p>Tip:<bold> if you want this to work make sure there are no commas in your link, price, or name</bold></p>
                 <div id="case" class="werPart">
                     <h4>case</h4>
                     {this.state["case"].map((part) => <Things list={part} delete={this.delete}/>)}
