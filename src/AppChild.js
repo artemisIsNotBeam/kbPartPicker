@@ -90,10 +90,11 @@ class CustomPart extends React.Component{
 
     export(stateDoe){
         let ourLog = [];
-
+        // code for us
+        // https://stackoverflow.com/questions/28252888/javascript-how-to-save-prompt-input-into-array
         stateDoe["goThrough"].map((place) =>{
             let newPlace = this.state[place];
-            ourLog.push(`[${newPlace.map((thing) => "["+thing+"]")}]`);
+            ourLog.push(`${newPlace.map((thing) => ""+thing+"NextEle")}`);
             if (place !== "accesories"){
                 ourLog.push(";/spitCode");
             }
