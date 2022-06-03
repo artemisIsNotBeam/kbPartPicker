@@ -153,24 +153,28 @@ class CustomPart extends React.Component{
 
                 <div id="switches" class="werPart">
                     <h4>switches</h4>
+                    {this.state["switches"].map((part) => <Things list={part} delete={this.delete}/>)}
                     <button onClick={()=> this.clear("switches")}>Clear</button>
                     <button onClick={() => this.addThing("switches")}>Add Part</button>
                 </div>
 
                 <div id="keycaps" class="werPart">
                     <h4>keycaps</h4>
+                    {this.state["keycaps"].map((part) => <Things list={part} delete={this.delete}/>)}
                     <button onClick={()=> this.clear("keycaps")}>Clear</button>
                     <button onClick={() => this.addThing("keycaps")}>Add Part</button>
                 </div>
 
                 <div id="artisans" class="werPart">
                     <h4>artisans, hint: try etsy</h4>
+                    {this.state["artisans"].map((part) => <Things list={part} delete={this.delete}/>)}
                     <button onClick={()=> this.clear("artisans")}>Clear</button>
                     <button onClick={() => this.addThing("artisans")}>Add Part</button>
                 </div>
 
                 <div id="accesories" class="werPart">
                     <h4>accesories, include: cables,o rings, etc</h4>
+                    {this.state["accesories"].map((part) => <Things list={part} delete={this.delete}/>)}
                     <button onClick={()=> this.clear("accesories")}>Clear</button>
                     <button onClick={() => this.addThing("accesories")}>Add Part</button>
                 </div>
