@@ -83,9 +83,30 @@ class CustomPart extends React.Component{
     }
 
     import(goThroughfake){
-        let orignal = prompt("what was your export prompt")
+        let orignal = prompt("what was your export prompt");
         let arr = orignal.split(";/spitCode");
-        console.log(arr);
+        
+        for (let i=0;i<goThroughfake.length;i++){
+            let arrOfPlace = arr[i].split(' ;;SplitId;; ');
+            
+            for(let j=0;j<arrOfPlace.length;j++){
+                let newArray = arrOfPlace[j].split(',');
+                newArray = newArray.filter(Boolean);
+
+                let thingtoPut=[];
+                this.state[goThroughfake[i]].map((part)=>{
+                    thingtoPut.push(part);
+                })
+                thingtoPut.push(newArray)
+                console.log(newArray);
+                
+                if(newArray.length === 3){
+                    this.setState({ [goThroughfake[i]] : thingtoPut});
+                }
+            }
+
+            
+        }
     }
 
     export(stateDoe){
@@ -94,7 +115,7 @@ class CustomPart extends React.Component{
         // https://stackoverflow.com/questions/28252888/javascript-how-to-save-prompt-input-into-array
         stateDoe["goThrough"].map((place) =>{
             let newPlace = this.state[place];
-            ourLog.push(`${newPlace.map((thing) => ""+thing+"NextEle")}`);
+            ourLog.push(`${newPlace.map((thing) => ""+thing+" ;;SplitId;; ")}`);
             if (place !== "accesories"){
                 ourLog.push(";/spitCode");
             }
@@ -132,26 +153,26 @@ class CustomPart extends React.Component{
 
                 <div id="switches" class="werPart">
                     <h4>switches</h4>
-                    <button>Clear</button>
-                    <button>Add Part</button>
+                    <button onClick={()=> this.clear("switches")}>Clear</button>
+                    <button onClick={() => this.addThing("switches")}>Add Part</button>
                 </div>
 
                 <div id="keycaps" class="werPart">
                     <h4>keycaps</h4>
-                    <button>Clear</button>
-                    <button>Add Part</button>
+                    <button onClick={()=> this.clear("keycaps")}>Clear</button>
+                    <button onClick={() => this.addThing("keycaps")}>Add Part</button>
                 </div>
 
                 <div id="artisans" class="werPart">
                     <h4>artisans, hint: try etsy</h4>
-                    <button>Clear</button>
-                    <button>Add Part</button>
+                    <button onClick={()=> this.clear("artisans")}>Clear</button>
+                    <button onClick={() => this.addThing("artisans")}>Add Part</button>
                 </div>
 
                 <div id="accesories" class="werPart">
                     <h4>accesories, include: cables,o rings, etc</h4>
-                    <button>Clear</button>
-                    <button>Add Part</button>
+                    <button onClick={()=> this.clear("accesories")}>Clear</button>
+                    <button onClick={() => this.addThing("accesories")}>Add Part</button>
                 </div>
                 <p>Price: {this.totPrice(this.state)}</p>
                 {this.state.message}
