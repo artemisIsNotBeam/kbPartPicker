@@ -128,10 +128,15 @@ class CustomPart extends React.Component{
         this.state["goThrough"].map((place)=>{
             let newPlace = this.state[place];
             // running through the list
-            this.setState({
-                [place]: newPlace.filter((_, i) => i === theirList)
-            });
-            console.log(newPlace.filter((_, i) => i === theirList));
+            newPlace.map(newNewPlace =>{
+
+                if( newNewPlace === theirList){
+                    this.setState({
+                        [place]: newNewPlace.filter((i) => i === theirList)
+                    })
+                }
+            })
+
         })
     }
     
