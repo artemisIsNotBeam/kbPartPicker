@@ -29,15 +29,17 @@ html{
 
 button{
   font-family:'Poppins','Merriweather', Arial, sans-serif;
-  margin: 2px;
+  margin: 3px;
   background-color: #212a2e;
   color: #ffffff;
   border: 1px solid #828fff;
+  border-radius: 3px;
 }
 
 button:hover {
   background-color: #515b62;
   color: #ffffff;
+  text-decoration: underline;
 }
 
 a{
