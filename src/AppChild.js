@@ -15,10 +15,10 @@ class  Things extends React.Component{
     }
 
     render(){ 
-        return (<div class="section" className="App">
-            <a id="leftIt" href={this.state.list[0]}>{this.state.list[1]}</a>
-            <p id="rightIt">Price: {this.state.list[2]}</p>
-            <button onClick={()=>this.props.delete(this.state.list)}>Delete Element</button>
+        return (<div class="section" className="item">
+            <a class="oneItem" href={this.state.list[0]}>{this.state.list[1]}</a>
+            <p class="oneItem">Price: {this.state.list[2]}</p>
+            <button class="oneItem" onClick={()=>this.props.delete(this.state.list)}>Delete Element</button>
         </div>)
     }
 }
@@ -84,10 +84,10 @@ class CustomPart extends React.Component{
 
     import(goThroughfake){
         let orignal = prompt("what was your export prompt");
-        let arr = orignal.split(";/spitCode");
+        let arr = orignal.split(";/|");
         
         for (let i=0;i<goThroughfake.length;i++){
-            let arrOfPlace = arr[i].split(' ;;SplitId;; ');
+            let arrOfPlace = arr[i].split(' ;/; ');
             
             for(let j=0;j<arrOfPlace.length;j++){
                 let newArray = arrOfPlace[j].split(',');
@@ -115,9 +115,9 @@ class CustomPart extends React.Component{
         // https://stackoverflow.com/questions/28252888/javascript-how-to-save-prompt-input-into-array
         stateDoe["goThrough"].map((place) =>{
             let newPlace = this.state[place];
-            ourLog.push(`${newPlace.map((thing) => ""+thing+" ;;SplitId;; ")}`);
+            ourLog.push(`${newPlace.map((thing) => ""+thing+" ;/; ")}`);
             if (place !== "accesories"){
-                ourLog.push(";/spitCode");
+                ourLog.push(";/|");
             }
         });
 
